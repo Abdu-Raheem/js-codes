@@ -142,3 +142,65 @@ const myCar = new Car("Toyota", "Corolla");
 // Using the displayDetails method
 myCar.displayDetails();  // Output: Car Make: Toyota, Model: Corolla
 
+
+// Form validation using DOM
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Example</title>
+    <script>
+        function validateForm() {
+            // Validate Name
+            let name = document.forms["myForm"]["name"].value;
+            if (name == "") {
+                alert("Name must be filled out");
+                return false; // Prevents the form from being submitted
+            }
+
+            // Validate Email
+            let email = document.forms["myForm"]["email"].value;
+            let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (email == "") {
+                alert("Email must be filled out");
+                return false;
+            } else if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address");
+                return false;
+            }
+
+            // Validate Phone Number
+            let phone = document.forms["myForm"]["phone"].value;
+            let phonePattern = /^[0-9]{10}$/; // Validates 10-digit phone numbers
+            if (phone == "") {
+                alert("Phone number must be filled out");
+                return false;
+            } else if (!phonePattern.test(phone)) {
+                alert("Please enter a valid 10-digit phone number");
+                return false;
+            }
+
+            // If all validations pass
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h2>Form with Name, Email, and Phone Validation</h2>
+    <form name="myForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email"><br><br>
+
+        <label for="phone">Phone Number:</label><br>
+        <input type="text" id="phone" name="phone"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
